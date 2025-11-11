@@ -1,5 +1,5 @@
 import express from "express";
-import connectDB from "./config/database";
+import connectDB from "@/config/database";
 import Router from "@/routes/index";
 const app = express();
 //Enable json parsing body
