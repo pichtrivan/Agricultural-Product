@@ -1,5 +1,5 @@
 
-import userModel from "@/models/user";
+import { UserModel } from "@/models/user";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
@@ -11,10 +11,11 @@ const generateToken = (userId: string, roles: string[]): string => {
 };
 
 export const registerService = async (req: Request, res: Response) => {
+  console.log("Register Service Called");
   try {
-    const { email, password, firstName, lastName, phone, age } = req.body;
-    const existEmail = await userModel.findOne({ email });
-    const existPhone = await userModel.findOne({ phone });
+    const { email, password, firstName, lastName, phone, age, userName} = req.body;
+    const existEmail = await UserModel.findOne({ email });
+    const existPhone = await UserModel.findOne({ phone });
     if (existEmail) {
       res.status(400).json({ message: "Email already exist!" });
     }
@@ -23,13 +24,14 @@ export const registerService = async (req: Request, res: Response) => {
     }
     //bcrypt password
     const hashPassword = await bcrypt.hash(password, 12);
-    const newUser = new userModel({
+    const newUser = new UserModel({
       email,
       password: hashPassword,
       firstName,
       lastName,
       phone,
       age,
+      userName,
     });
     await newUser.save();
 
@@ -40,17 +42,18 @@ export const registerService = async (req: Request, res: Response) => {
       token,
     });
   } catch (error: any) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
+    throw error;
+    // res.status(400).json({
+    //   success: false,
+    //   message: error.message,
+    // });
   }
 };
 
 export const LoginService = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-    const existEmail = await userModel.findOne({ email });
+    const existEmail = await UserModel.findOne({ email });
     if (!existEmail) {
       return res.status(400).json({ message: "Email not exist!" });
     }

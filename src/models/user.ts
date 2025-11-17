@@ -1,44 +1,65 @@
+import { Schema, Document, model } from "mongoose";
 import IUser from "@/types/user";
-import mongoose, { Schema } from "mongoose";
 
-const userSchema = new Schema<IUser>(
+const userSchema = new Schema(
   {
     firstName: {
       type: String,
-      required: true,
+      required: [true, "First name is required"],
+      trim: true,
     },
+
     lastName: {
-      type: String,
-      required: true,
+      type: String, // optional
+      trim: true,
     },
-    email: {
+
+    userName: {
       type: String,
-      required: true,
+      required: [true, "Username is required"],
       unique: true,
+      trim: true,
       lowercase: true,
     },
+
+    age: {
+      type: Number, // optional
+    },
+
+    email: {
+      type: String,
+      required: [true, "Email is required"],
+      unique: true,
+      trim: true,
+      lowercase: true,
+      validate: {
+        validator: function (value: string) {
+          return /^\S+@\S+\.\S+$/.test(value); // regular expression(regex), basic email validation using regular expression 
+        },
+        message: "Please provide a valid email address",
+      },
+    },
+
     password: {
       type: String,
-      required: true,
-      minlength: 6,
+      required: [true, "Password is required"],
     },
+
     phone: {
       type: String,
-      required: true,
+      required: [true, "Phone number is required"],
       unique: true,
-    },
-    age: {
-      type: Number,
-      required: true,
-    },
-    roles: {
-      type: [String],
-      enum: ["admin", "farmer", "user"], 
-      default: ["user"],
-      required: true,
+      trim: true,
+      // match: [], // 
+      validate: {
+        validator: function (value: string) {
+          return /^[0-9]{8,15}$/.test(value); // 8–15 digits
+        },
+        message: "Phone number must contain 8–15 digits",
+      },
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.model<IUser>("User", userSchema);
+export const UserModel = model<IUser & Document>("User", userSchema);
