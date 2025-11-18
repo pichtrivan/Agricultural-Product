@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "dev": "nodemon src/server.ts"
-  },
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "nodemon",
+  "seed:admin": "ts-node src/utiles/seedRole.ts",
+  "seed:customer": "ts-node src/utiles/seedCustomerRole.ts",
+  "seed:farmer": "ts-node src/utiles/seedFarmerRole.ts"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

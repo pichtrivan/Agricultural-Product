@@ -1,5 +1,5 @@
 
-import { UserModel } from "@/models/user";
+import { UserModel } from "@/models/userModels";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
@@ -11,7 +11,6 @@ const generateToken = (userId: string, roles: string[]): string => {
 };
 
 export const registerService = async (req: Request, res: Response) => {
-  console.log("Register Service Called");
   try {
     const { email, password, firstName, lastName, phone, age, userName} = req.body;
     const existEmail = await UserModel.findOne({ email });
@@ -69,9 +68,9 @@ export const LoginService = async (req: Request, res: Response) => {
       token,
     });
   } catch (error: any) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
+    // res.status(400).json({
+    //   success: false,
+    //   message: error.message,
+    // });
   }
 };

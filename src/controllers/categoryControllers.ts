@@ -5,7 +5,7 @@ import { Request, Response } from "express";
   getAllCategoriesService,
   getCategoryService,
   updateCategoryService,
-} from "@/server/categoryService";
+} from "@/services/categoryService";
 
 export const CreateCategoryController = async (req: Request, res: Response) => {
   const result = await createCategoryService(req, res);
