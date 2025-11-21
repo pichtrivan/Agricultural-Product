@@ -18,9 +18,9 @@ const userRoleSchema = new Schema<IUserRole>(
   {
     userId: { type: Schema.Types.ObjectId as any, ref: "User", required: true },
     roleId: { type: Schema.Types.ObjectId as any, ref: "Role", required: true },
-    assignedAt: { type: Date, default: Date.now },
+    // assignedAt: { type: Date, default: Date.now },
   },
-  { timestamps: false }
+  { timestamps: true }
 );
 
 export const UserRoleModel = model<IUserRole>("UserRole", userRoleSchema);

@@ -1,32 +1,58 @@
 import { Request, Response } from "express";
-    import {
+import {
   createCategoryService,
-  deleteCategoryService,
   getAllCategoriesService,
   getCategoryService,
   updateCategoryService,
+  deleteCategoryService,
 } from "@/services/categoryService";
 
-export const CreateCategoryController = async (req: Request, res: Response) => {
-  const result = await createCategoryService(req, res);
-  return result;
+// CREATE CATEGORY
+export const createCategoryController = async (req: Request, res: Response) => {
+  try {
+    const category = await createCategoryService(req.body);
+    return res.status(201).json({ success: true, message: "Category created", data: category });
+  } catch (error: any) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
 };
-export const GetAllCategoriesController = async (
-  req: Request,
-  res: Response
-) => {
-  const result = await getAllCategoriesService(req, res);
-  return result;
+
+// GET ALL CATEGORIES
+export const getAllCategoriesController = async (_req: Request, res: Response) => {
+  try {
+    const categories = await getAllCategoriesService();
+    return res.status(200).json({ success: true, data: categories });
+  } catch (error: any) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
 };
-export const UpdateCategoryController = async (req: Request, res: Response) => {
-  const result = await updateCategoryService(req, res);
-  return result;
+
+// GET SINGLE CATEGORY
+export const getCategoryController = async (req: Request, res: Response) => {
+  try {
+    const category = await getCategoryService(req.params.id);
+    return res.status(200).json({ success: true, data: category });
+  } catch (error: any) {
+    return res.status(404).json({ success: false, message: error.message });
+  }
 };
-export const GetCategoryController = async (req: Request, res: Response) => {
-  const result = await getCategoryService(req, res);
-  return result;
+
+// UPDATE CATEGORY
+export const updateCategoryController = async (req: Request, res: Response) => {
+  try {
+    const category = await updateCategoryService(req.params.id, req.body);
+    return res.status(200).json({ success: true, message: "Category updated", data: category });
+  } catch (error: any) {
+    return res.status(404).json({ success: false, message: error.message });
+  }
 };
-export const DeleteCategoryController = async (req: Request, res: Response) => {
-  const result = await deleteCategoryService(req, res);
-  return result;
+
+// DELETE CATEGORY
+export const deleteCategoryController = async (req: Request, res: Response) => {
+  try {
+    await deleteCategoryService(req.params.id);
+    return res.status(200).json({ success: true, message: "Category deleted" });
+  } catch (error: any) {
+    return res.status(404).json({ success: false, message: error.message });
+  }
 };

@@ -16,7 +16,7 @@ import type { IRole } from "@/types/role";
 
 const roleSchema = new Schema<IRole>(
   {
-    id : { type: Schema.Types.ObjectId , required: true },
+    _id : { type: Schema.Types.ObjectId , required: true },
     name: { type: String, required: true, unique: true },
     description: { type: String },
   },

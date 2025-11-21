@@ -5,15 +5,16 @@ export interface ICategory extends Document {
   description?: string;
   createdAt?: Date;
   updatedAt?: Date;
-  roles?: "admin" | "farmer" | "user";
 }
 
 const categorySchema = new Schema<ICategory>(
   {
-    name: { type: String, required: true, unique: true },
-    description: { type: String },
-    // roles: { type: String, enum: ["admin", "farmer", "user"], default: "user" },
-  }
+    name: { type: String, required: true, unique: true, trim: true },
+    description: { type: String, trim: true },
+  },
+  { timestamps: true } // adds createdAt & updatedAt automatically
 );
+
 const Category = mongoose.model<ICategory>("Category", categorySchema);
+
 export default Category;
