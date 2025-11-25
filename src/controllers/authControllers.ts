@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 export const registerController = async (req: Request, res: Response) => {
   try {
-    console.log("Req", req.body);
+    // console.log("Req", req.body);
     const result = await registerService(req, res);
     return res.json(result);
     

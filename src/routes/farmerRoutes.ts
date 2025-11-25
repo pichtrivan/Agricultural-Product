@@ -1,11 +1,4 @@
 import express from "express";
-// import {
-//   createFarmerController,
-//   getFarmersController,
-//   getFarmerController,
-//   updateFarmerController,
-//   deleteFarmerController,
-// } from "@/controllers/farmerControllers";
 import { createFarmerController } from "@/controllers/farmerControllers";
 
 const router = express.Router();
@@ -65,7 +58,6 @@ const router = express.Router();
  *         description: Bad request
  */
 router.post("/create-farmer", createFarmerController);
-router.get("/farmers/:id", createFarmerController); // get farmer by id
-
+// router.delete("/delete/:id", ); // DELETE FARMER
 
 export default router;

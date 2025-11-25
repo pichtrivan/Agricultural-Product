@@ -1,6 +1,6 @@
 import { Router } from "express";
-import authRoute from "./authRoutes";
-// import productsRoutes from "./productRoutes";
+import authRoute from "@/routes/authRoutes";
+import productsRoutes from "@/routes/productRoutes";
 import categoryRoutes from "@/routes/categoryRoutes";
 import farmerRoutes from "@/routes/farmerRoutes";
 
@@ -8,7 +8,7 @@ const router = Router();
 
 router.use("/auth", authRoute);
 router.use("/categories", categoryRoutes);
-// router.use("/products", productRoutes);
+router.use("/products", productsRoutes);
 router.use("/", farmerRoutes);
 
 export default router;

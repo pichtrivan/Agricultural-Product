@@ -64,27 +64,3 @@ export const createFarmerService = async (req: Request, res: Response) => {
     throw error;
   }
 };
-
-// create by id
-//  export const getFarmerByIdService = async (req: Request, res: Response) => {
-//    try {
-//      const { id } = req.params;
-//      const farmer = await FarmerModel.findById(id);
-//      if (!farmer) {
-//        return res.status(404).json({
-//          success: false,
-//          message: "Farmer not found",
-//        });
-//      }
-//      return res.status(200).json({
-//        success: true,
-//        message: "Farmer fetched successfully",
-//        data: farmer,
-//      });
-//    } catch (error: any) {
-//      return res.status(500).json({
-//        success: false,
-//        message: error.message,
-//      });
-//    }
-//  };
