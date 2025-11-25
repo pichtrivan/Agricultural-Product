@@ -6,7 +6,6 @@ import { IRole } from "@/types/role";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { FarmerModel } from "@/models/farmerModels";
 
 const generateToken = (userId: string, roles: string[]): string => {
   return jwt.sign({ userId, roles }, process.env.JWT_SECRET!, {
