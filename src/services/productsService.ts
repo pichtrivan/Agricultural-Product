@@ -63,13 +63,3 @@ export const deleteProductService = async (id: string) => {
   }
 };
 
-// // ===================== GET PRODUCTS BY CATEGORY =====================
-// export const getProductsByCategoryService = async (category: string) => {
-//   try {
-//     const products = await productModel.find({ category });
-//     if (!products || products.length === 0) return { success: false, message: "No products found for this category" };
-//     return { success: true, data: products };
-//   } catch (error: any) {
-//     return { success: false, message: error.message };
-//   }
-// };

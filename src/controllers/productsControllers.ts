@@ -5,7 +5,6 @@ import {
   getProductService,
   updateProductService,
   deleteProductService,
-  // getProductsByCategoryService,
 } from "@/services/productsService";
 
 // Create Product
@@ -41,9 +40,3 @@ export const deleteProductController = async (req: Request, res: Response) => {
   res.status(result.success ? 200 : 404).json(result);
 };
 
-// // Get Products by Category
-// export const getProductsByCategoryController = async (req: Request, res: Response) => {
-//   const { category } = req.params;
-//   const result = await getProductsByCategoryService(category);
-//   res.status(result.success ? 200 : 404).json(result);
-// };

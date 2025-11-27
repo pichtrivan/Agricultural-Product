@@ -25,7 +25,5 @@ router.put("/update/:id", updateProductController);
 // DELETE PRODUCT
 router.delete("/delete/:id", deleteProductController);
 
-// // GET PRODUCTS BY CATEGORY
-// router.get("/category/:category", getProductsByCategoryController);
 
 export default router;
