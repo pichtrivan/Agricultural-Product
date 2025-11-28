@@ -5,6 +5,7 @@ import {
   getProductController,
   updateProductController,
   deleteProductController,
+  getProductsByDetailController
   // getProductsByCategoryController,
 } from "@/controllers/productsControllers";
 
@@ -24,6 +25,8 @@ router.put("/update/:id", updateProductController);
 
 // DELETE PRODUCT
 router.delete("/delete/:id", deleteProductController);
+// // GET PRODUCTS BY DETAIL
+router.get("/detail/:id", getProductsByDetailController);
 
 
 export default router;
